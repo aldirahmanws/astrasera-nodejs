@@ -1,0 +1,464 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Astra Sera Test",
+        "description": "Rest API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "API for auth"
+        },
+        {
+            "name": "Campaign",
+            "description": "API for CRUD Mongoose"
+        },
+        {
+            "name": "Customer",
+            "description": "API for CRUD Cloud Firestore"
+        },
+        {
+            "name": "Integration",
+            "description": "API for Integration Thirdy Party"
+        },
+        {
+            "name": "Filter",
+            "description": "API for Filter from filter-data.json"
+        }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": ["Auth"],
+                "description": "Login user",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/auth/checkLogin": {
+            "get": {
+                "tags": ["Auth"],
+                "description": "Check Login user",
+                "parameters": [],
+                "security": [{ "JWT": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "get": {
+                "tags": ["Auth"],
+                "description": "Logout user",
+                "parameters": [],
+                "security": [{ "JWT": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/campaign/list": {
+            "get": {
+                "tags": ["Campaign"],
+                "description": "Get list Campaign",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/campaign/create": {
+            "post": {
+                "tags": ["Campaign"],
+                "description": "Create campaign",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Campaign"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/campaign/read/{campaignID}": {
+            "get": {
+                "tags": ["Campaign"],
+                "description": "Details campaign",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "campaignID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/campaign/update/{campaignID}": {
+            "put": {
+                "tags": ["Campaign"],
+                "description": "Update campaign",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "campaignID"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Campaign"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/campaign/delete/{campaignID}": {
+            "delete": {
+                "tags": ["Campaign"],
+                "description": "Delete campaign",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "campaignID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/customer/list": {
+            "get": {
+                "tags": ["Customer"],
+                "description": "Get list Customer",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/customer/create": {
+            "post": {
+                "tags": ["Customer"],
+                "description": "Create customer",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/customer/read/{email}": {
+            "get": {
+                "tags": ["Customer"],
+                "description": "Details customer",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/customer/update/{email}": {
+            "put": {
+                "tags": ["Customer"],
+                "description": "Update customer",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "email"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/customer/delete/{email}": {
+            "delete": {
+                "tags": ["Customer"],
+                "description": "Delete customer",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/integration/register": {
+            "post": {
+                "tags": ["Integration"],
+                "description": "Integration Register",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationRegister"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/integration/login": {
+            "post": {
+                "tags": ["Integration"],
+                "description": "Integration Login",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationLogin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/filter": {
+            "get": {
+                "tags": ["Filter"],
+                "description": "Filter denom >= 100000",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "required": ["email", "password"],
+            "properties": {
+                "email": { "type": "string", "example": "aldi@gmail.com" },
+                "password": { "type": "string", "example": "aldi" }
+            }
+        },
+        "Campaign": {
+            "type": "object",
+            "required": [
+                "name",
+                "shortDescription",
+                "description",
+                "goalAmount"
+            ],
+            "properties": {
+                "name": { "type": "string", "example": "Beri bantuan" },
+                "shortDescription": {
+                    "type": "string",
+                    "example": "Bantuan untuk orang "
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Bantuan untuk orang yang membutuhkan"
+                },
+                "goalAmount": { "type": "int", "example": 1000 }
+            }
+        },
+        "Customer": {
+            "type": "object",
+            "required": [
+                "email",
+                "name",
+                "address",
+                "city",
+                "country"
+            ],
+            "properties": {
+                "email": { "type": "string", "example": "example@gmail.com" },
+                "name": { "type": "string", "example": "amanda" },
+                "address": { "type": "string", "example": "Jl. Raya Pahlawan" },
+                "city": { "type": "string", "example": "Jakarta" },
+                "country": { "type": "string", "example": "Indonesia" }
+                
+            }
+        },
+        "CustomerUpdate": {
+            "type": "object",
+            "required": [
+                "name",
+                "address",
+                "city",
+                "country"
+            ],
+            "properties": {
+                "name": { "type": "string", "example": "amanda update" },
+                "address": { "type": "string", "example": "Jl. Raya Pahlawan Negara" },
+                "city": { "type": "string", "example": "Jakarta" },
+                "country": { "type": "string", "example": "Indonesia" }
+                
+            }
+        },
+        
+        "IntegrationRegister": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": { "type": "string", "example": "eve.holt@reqres.in" },
+                "password": { "type": "string", "example": "pistol" }
+            }
+        },
+        "IntegrationLogin": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": { "type": "string", "example": "eve.holt@reqres.in" },
+                "password": { "type": "string", "example": "cityslicka" }
+            }
+        }
+        
+    },
+    "securityDefinitions": {
+        "JWT": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "scheme": "bearer",
+            "in": "header"
+        }
+    }
+}

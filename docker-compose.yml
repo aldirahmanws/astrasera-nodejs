@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  mongo_db:
+    container_name: mongo-db
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+  api:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      BASE_URL: http://localhost:3000
+      PORT: 3000
+      MONGODB_URL: mongodb://mongo_db:27017/astrasera
+      JWT_KEY: xJnaweuSIwksmI
+    depends_on:
+      - mongo_db
+volumes:
+  mongo_db: {}
